@@ -7,13 +7,13 @@ import { clear } from "./clear";
 
 const particle_radius = 2;
 const particle_count = 600;
-const color_count = 5;
+const color_count = 10;
 const rmax =
-  Math.min(window.innerWidth, window.innerHeight) / 2 - particle_radius * 2;
+  Math.min(window.innerWidth, window.innerHeight) / 3 - particle_radius * 2;
 const rmin = particle_radius * 6;
 const max_speed = 0.002;
-const max_force = 0.05;
-const attraction_constant = 0.00003;
+const max_force = 0.001;
+const attraction_constant = 0.00001;
 
 // end of settings
 

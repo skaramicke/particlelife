@@ -142,7 +142,7 @@ const loop = () => {
 
   if (UI_visible) {
     // Draws activation curve graph
-    drawActivationCurve(context);
+    drawActivationCurve(context, dt);
 
     // Draws the attraction map UI
     drawAttractionMap(context, attraction_map, colors);

@@ -6,12 +6,12 @@ export function drawActivationCurve(context, dt) {
 
   const value = Math.sin(time / 500);
 
-  const graph_rmax = 50;
-  const graph_rmin = 10;
-  const graph_distance = 60;
+  const graph_rmax = 200;
+  const graph_rmin = 20;
+  const graph_distance = 210;
   const ox = 60;
   const oy = 120;
-  const width_scale = 5;
+  const width_scale = 1;
   const height_scale = 50;
 
   context.strokeStyle = "rgba(0, 255, 0, 0.5)";
@@ -58,7 +58,7 @@ export function drawActivationCurve(context, dt) {
     const a = attractionFactor(value, d, graph_rmin, graph_rmax);
     const x = ox + d * width_scale;
     const y = oy + -a * height_scale;
-    context.lineTo(x, y);
+    context.fillRect(x, y, width_scale, 2);
   }
   context.stroke();
   context.closePath();

@@ -7,12 +7,13 @@ import { clear } from "./clear";
 
 const particle_radius = 2;
 const particle_count = 600;
-const color_count = 10;
+const color_count = 5;
 const rmax =
   Math.min(window.innerWidth, window.innerHeight) / 2 - particle_radius * 2;
-const rmin = particle_radius * 2;
-const max_speed = 0.001;
-const acceleration = 0.001;
+const rmin = particle_radius * 6;
+const max_speed = 0.002;
+const max_force = 0.05;
+const attraction_constant = 0.00003;
 
 // end of settings
 
@@ -242,15 +243,14 @@ function calculateForces(i, p, c) {
     const d = Math.sqrt(dx * dx + dy * dy);
 
     // Absolute attraction
-    let a =
-      attractionFactor(attraction_map[c][c2], d, rmin, rmax) * acceleration;
+    let a = attractionFactor(attraction_map[c][c2], d, rmin, rmax);
 
     // normal vector
     const nx = dx / d;
     const ny = dy / d;
 
-    fx += nx * a;
-    fy += ny * a;
+    fx += nx * a * attraction_constant;
+    fy += ny * a * attraction_constant;
 
     // context.strokeStyle = "rgb(255, 255, 255)";
     // context.strokeWidth = 5 * Math.abs(a);
@@ -260,5 +260,13 @@ function calculateForces(i, p, c) {
     // context.stroke();
     // context.closePath();
   }
+
+  // Apply max force
+  const force = Math.sqrt(fx * fx + fy * fy);
+  if (force > max_force) {
+    fx = (fx / force) * max_force;
+    fy = (fy / force) * max_force;
+  }
+
   return { fx, fy };
 }

@@ -5,12 +5,12 @@ import drawActivationCurve from "./drawActivationCurve";
 import drawAttractionMap, { attractionMapCells } from "./attractionMapUI.js";
 import { clear } from "./clear";
 
-const particle_radius = 2;
+const particle_radius = 4;
 const particle_count = 600;
 const color_count = 10;
 const rmax =
   Math.min(window.innerWidth, window.innerHeight) / 3 - particle_radius * 2;
-const rmin = particle_radius * 6;
+const rmin = particle_radius * 4;
 const max_speed = 0.002;
 const max_force = 0.001;
 const attraction_constant = 0.00001;

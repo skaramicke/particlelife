@@ -17,30 +17,38 @@ function drawParticle(context, color, x, y, r) {
   context.closePath();
 }
 
-const run = () => {
-  const body = document.getElementsByTagName("body")[0];
+const body = document.getElementsByTagName("body")[0];
 
-  var canvas = document.createElement("canvas");
-  body.appendChild(canvas);
+var canvas = document.createElement("canvas");
+body.appendChild(canvas);
 
-  // Make the canvas fill the page
-  canvas.style.position = "absolute";
-  canvas.style.top = 0;
-  canvas.style.left = 0;
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+// Make the canvas fill the page
+canvas.style.position = "absolute";
+canvas.style.top = 0;
+canvas.style.left = 0;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  // Get the 2D drawing context
-  var context = canvas.getContext("2d");
+// Get the 2D drawing context
+var context = canvas.getContext("2d");
 
+clear(context, canvas);
+
+let x = 0;
+let y = 0;
+
+// Define a run loop
+const loop = (dt) => {
   clear(context, canvas);
 
-  const x = 100;
-  const y = 100;
-  const r = 50;
-  const color = "rgba(255, 0, 0, 1)";
+  x = 100 + 50 * Math.cos(dt / 1000);
+  y = 100 + 50 * Math.sin(dt / 1000);
 
-  drawParticle(context, color, x, y, r);
+  // Draw a circle
+  drawParticle(context, "red", x, y, 50);
+
+  // Call the loop function again in 1/60th of a second
+  requestAnimationFrame(loop);
 };
 
-run();
+loop();

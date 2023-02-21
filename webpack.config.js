@@ -19,6 +19,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: "Particle Life by Mikael Grön",
       inject: true,
     }),
 
